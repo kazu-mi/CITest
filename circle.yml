@@ -21,7 +21,6 @@ dependencies:
   override:
     # AndroidManifest.xmlを参照し、必要なSDKとビルドツールを指定
     - echo y | android update sdk --no-ui --filter "android-25,build-tools-25.0.2"
-  pwd: ./CITest/
 test:
   override:
     # 今回はテスト書いていないので何もしない
@@ -31,5 +30,8 @@ deployment:
     # デプロイするブランチ名を指定
     branch: master
     commands:
+      - pwd
+      - cd CITest
+      - pwd
       # デバッグAPK生成
-      - ./gradlew assembleDebug
+      # - ./gradlew assembleDebug
