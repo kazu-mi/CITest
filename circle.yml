@@ -30,9 +30,5 @@ deployment:
     # デプロイするブランチ名を指定
     branch: master
     commands:
-      - pwd
-      - cd CITest
-      - pwd
-      - ls
       # デバッグAPK生成
-      # - ./gradlew assembleDebug
+      - cd CITest && ./gradlew assembleDebug
