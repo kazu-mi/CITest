@@ -5,7 +5,7 @@ general:
       - master
   artifacts:
     # Artifactsで見えるようにするファイル
-    - app/build/outputs/apk/app-debug.apk
+    - ./CITest/app/build/outputs/apk/app-debug.apk
 machine:
   java:
     # java8を指定
