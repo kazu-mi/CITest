@@ -26,6 +26,7 @@ test:
     # 今回はテスト書いていないので何もしない
     - echo "Nothing to do here."
 deployment:
+  pwd: ./CITest/
   master:
     # デプロイするブランチ名を指定
     branch: master
