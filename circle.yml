@@ -33,5 +33,6 @@ deployment:
       - pwd
       - cd CITest
       - pwd
+      - ls
       # デバッグAPK生成
       # - ./gradlew assembleDebug
