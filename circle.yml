@@ -1,0 +1,34 @@
+general:
+  branches:
+    only:
+      # プッシュされたビルド実行するブランチを指定
+      - master
+  artifacts:
+    # Artifactsで見えるようにするファイル
+    - app/build/outputs/apk/app-debug.apk
+machine:
+  java:
+    # java8を指定
+    version: openjdk8
+  environment:
+    # $ANDROID_HOMEを指定 (おまじない)
+    ANDROID_HOME: /usr/local/android-sdk-linux
+dependencies:
+  pre:
+    # 新しいSDKだとCircleCIがライセンス持ってないので、ローカルに合わせる
+    - mkdir $ANDROID_HOME/licenses
+    - echo "8933bad161af4178b1185d1a37fbf41ea5269c55" >> $ANDROID_HOME/licenses/android-sdk-license
+  override:
+    # AndroidManifest.xmlを参照し、必要なSDKとビルドツールを指定
+    - echo y | android update sdk --no-ui --filter "android-25,build-tools-25.0.2"
+test:
+  override:
+    # 今回はテスト書いていないので何もしない
+    - echo "Nothing to do here."
+deployment:
+  master:
+    # デプロイするブランチ名を指定
+    branch: master
+    commands:
+      # デバッグAPK生成
+      - ./gradlew assembleDebug
